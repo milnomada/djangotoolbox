@@ -1,34 +1,15 @@
 ## Djangotoolbox
 
- - Updated few items in [fields.py] to allow compatibility with Django >= 1.10
- - Django Subclassing was removed. See [here](https://docs.djangoproject.com/en/dev/internals/deprecation/)
+ - Updated few items in [fields.py](https://github.com/milnomada/djangotoolbox/blob/master/djangotoolbox/fields.py) to allow compatibility with Django >= 1.10
+ - Django Subclassing was removed. See [here](https://docs.djangoproject.com/en/dev/internals/deprecation/).
  - Using native `import_module`
  
 
-Moved from original [Djangotoolbox] project
+Moved from original [Djangotoolbox](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2Fdjango-nonrel%2Fdjangotoolbox&sa=D&sntz=1&usg=AFQjCNHPIm2kEr9TtEorm5NQYOSYt0YPFA) project
 
 
 Djangotoolbox provides a common API for running Django on
 non-relational/NoSQL databases (currently via Django-nonrel_).
-
-
-```
-In ``djangotoolbox.db`` you can find base classes for writing
-non-relational DB backends. Read
-`Writing a non-relational Django backend`_
-for more information.
-
-In ``djangotoolbox.fields`` you can find several common field
-types for non-relational DB backends (``ListField``, ``SetField``,
-``DictField``, ``RawField``, ``BlobField``).
-
-The ``djangotoolbox.admin`` module provides admin overrides for
-making ``django.contrib.auth`` work correctly in the admin UI.
-Simply add ``'djangotoolbox'`` to ``INSTALLED_APPS`` **after**
-``django.contrib.admin``. This will disable features that
-require JOINs. If you still need permission handling you should
-use the `nonrel permission backend`_.
-```
 
 
 ### Django-nonrel
