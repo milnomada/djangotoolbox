@@ -1,9 +1,8 @@
 # All fields except for BlobField written by Jonas Haag <jonas@lophus.org>
 
 from django.core.exceptions import ValidationError
-from django.utils.importlib import import_module
+from importlib import import_module
 from django.db import models
-from django.db.models.fields.subclassing import Creator
 from django.db.utils import IntegrityError
 from django.db.models.fields.related import add_lazy_relation
 
@@ -82,8 +81,10 @@ class AbstractIterableField(models.Field):
 
         # If items' field uses SubfieldBase we also need to.
         item_metaclass = getattr(self.item_field, '__metaclass__', None)
-        if item_metaclass and issubclass(item_metaclass, models.SubfieldBase):
-            setattr(cls, self.name, Creator(self))
+
+        # Do not use SubfieldBase in Django > 1.10
+        # if item_metaclass and issubclass(item_metaclass, models.SubfieldBase):
+        #    setattr(cls, self.name, Creator(self))
 
         if isinstance(self.item_field, models.ForeignKey) and isinstance(self.item_field.rel.to, basestring):
             """
@@ -245,7 +246,7 @@ class EmbeddedModelField(models.Field):
           the embedded instance (not just pre_save, get_db_prep_* and
           to_python).
     """
-    __metaclass__ = models.SubfieldBase
+    __metaclass__ = models.Field
 
     def __init__(self, embedded_model=None, *args, **kwargs):
         self.embedded_model = embedded_model
